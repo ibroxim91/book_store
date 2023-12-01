@@ -4,13 +4,13 @@ from .models import Book,Category,TgAdmin
 import datetime
 from django.core.mail import send_mail
 import telebot
-bot = telebot.TeleBot(token="6587656270:AAGEV4MFsrvoypdstkZoEFwjw7fgXBv6S9w")
+bot = telebot.TeleBot(token="")
 
 from django.views import View
 from django.views.generic import TemplateView,ListView ,CreateView
 from django.views.generic.detail import DetailView
-
-
+from .forms import BookForm
+from django.contrib import messages
 
 def send():
     send_mail("Registratsiya", "Registratsiya bajarildi",
@@ -20,7 +20,7 @@ class HomeView(ListView):
     template_name = "new.html"
     model = Book
     context_object_name = 'books'
-    queryset = Book.objects.filter(category__id=1)
+    # queryset = Book.objects.filter(category__id=1)
 
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
@@ -68,8 +68,19 @@ def search(request):
     return render(request=request, template_name="index.html",context= data )
 
 
-class AddBook(CreateView):
-    model = Book
-    template_name = "add_book.html"
-    success_url = "/"
-    fields = "__all__"
+class AddBook(View):
+    def get(self ,request):
+        form = BookForm()
+        context = {"form":form}
+        return render(request , "add_book.html", context=context)
+    
+    def post(self ,request):
+        form = BookForm(request.POST, request.FILES)
+        obj = None
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            if len(name) < 4:
+                messages.add_message(request, messages.WARNING, "Kitob nomi 4 ta belgidan kam")
+            obj = form.save()
+        context = {"obj":obj,"form":form}
+        return render(request , "add_book.html", context=context)
