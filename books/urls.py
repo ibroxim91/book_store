@@ -1,14 +1,17 @@
 from django.urls import path
-from .views import home ,category_books,book_detail,search
+from .views import HomeView ,category_books,BookDetail,search,AddBook
 app_name = "books"
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
-    path("" , home),
+    path("" , HomeView.as_view() , name="homeView"),
     path("category/<int:pk>" , category_books),
-    path("detail/<int:pk>" , book_detail),
+    path("detail/<int:pk>" , BookDetail.as_view() ),
 
     path("search" , search),
+
+    path("add_book", AddBook.as_view()  )
 ]
 
 

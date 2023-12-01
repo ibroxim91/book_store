@@ -18,6 +18,7 @@ class Book(models.Model):
     add_date = models.DateField(auto_now_add=True)
     likes = models.BigIntegerField(default=0)
     dislikes = models.BigIntegerField(default=0)
+    slug = models.SlugField(max_length=88,  blank=True)
     # views = models.BigIntegerField(default=0)
     
     # status = models.BooleanField()

@@ -7,4 +7,6 @@ app_name = "client"
 urlpatterns = [
     path("" , client_home),
     path("add" , client_add),
+
+    
 ]
