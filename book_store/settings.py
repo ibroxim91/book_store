@@ -126,6 +126,8 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
+LOGIN_REDIRECT_URL = "books:homeView"
+
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.mail.ru'

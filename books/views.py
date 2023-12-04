@@ -11,13 +11,14 @@ from django.views.generic import TemplateView,ListView ,CreateView
 from django.views.generic.detail import DetailView
 from .forms import BookForm
 from django.contrib import messages
+from django.contrib.auth.views import LoginView,LogoutView
 
 def send():
     send_mail("Registratsiya", "Registratsiya bajarildi",
                "navbaxor2016@mail.ru",["ulugbek.husain@gmail.com"])
 
 class HomeView(ListView):
-    template_name = "new.html"
+    template_name = "index.html"
     model = Book
     context_object_name = 'books'
     # queryset = Book.objects.filter(category__id=1)
@@ -84,3 +85,10 @@ class AddBook(View):
             obj = form.save()
         context = {"obj":obj,"form":form}
         return render(request , "add_book.html", context=context)
+
+
+class MyLoginView(LoginView):
+    template_name = "login.html"
+    success_url = "/"
+
+   
