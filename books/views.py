@@ -26,8 +26,9 @@ class HomeView(ListView):
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context =  super().get_context_data(**kwargs)
-        books = Category.objects.all()
-        context["categories"] = books
+        categories = Category.objects.all()
+        context["categories"] = categories
+        context["trend_books"] = 0
         return context 
 
 
@@ -49,7 +50,7 @@ def category_books(request,pk):
 
 
 class BookDetail(DetailView):
-    template_name = "book_detail.html"
+    template_name = "shop-details.html"
     model = Book
     
 

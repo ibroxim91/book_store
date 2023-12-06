@@ -8,7 +8,7 @@ urlpatterns = [
     path("" , HomeView.as_view() , name="homeView"
          ),
     path("category/<int:pk>" , category_books),
-    path("detail/<int:pk>" , BookDetail.as_view() ),
+    path("detail/<int:pk>" , BookDetail.as_view() , name="detail" ),
 
     path("search" , search),
     path("login" , MyLoginView.as_view() ),

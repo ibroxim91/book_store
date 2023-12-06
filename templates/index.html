@@ -1,36 +1,11 @@
 <!doctype html>
 <html lang="zxx">
+    {% load static %}
     <head>
         <!-- Required Meta Tags -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <!-- Bootstrap CSS --> 
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <!-- Animate Min CSS -->
-        <link rel="stylesheet" href="assets/css/animate.min.css">
-        <!-- Flaticon CSS -->
-        <link rel="stylesheet" href="assets/fonts/flaticon.css">
-        <!-- Boxicons CSS -->
-        <link rel="stylesheet" href="assets/css/boxicons.min.css">
-        <!-- Owl Carousel Min CSS --> 
-        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-        <!-- Nice Select Min CSS --> 
-        <link rel="stylesheet" href="assets/css/nice-select.min.css">
-        <!-- Meanmenu CSS -->
-        <link rel="stylesheet" href="assets/css/meanmenu.css">
-        <!-- Style CSS -->
-        <link rel="stylesheet" href="assets/css/style.css">
-        <!-- Responsive CSS -->
-        <link rel="stylesheet" href="assets/css/responsive.css">
-        <!-- Theme Dark CSS -->
-        <link rel="stylesheet" href="assets/css/theme-dark.css">
-
-
-        <!-- Favicon -->
-        <link rel="icon" type="image/png" href="assets/images/favicon.png">
-
+{% include 'css_links.html' %}
         <title>Hilo - Organic Food Shop HTML Template</title>
     </head>
     <body>
@@ -38,7 +13,7 @@
         <div class="preloader">
             <div class="d-table">
                 <div class="d-table-cell">
-                    <img src="assets/images/preloder-img.png" alt="Images">
+                    <img src="/static/assets/images/preloder-img.png" alt="Images">
                     <h2>Hilo</h2>
                 </div>
             </div>
@@ -103,7 +78,7 @@
             <!-- Menu For Mobile Device -->
             <div class="mobile-nav">
                 <a href="index.html" class="logo">
-                    <img src="assets/images/logos/logo-1.png" alt="Logo">
+                    <img src="/static/assets/images/logos/logo-1.png" alt="Logo">
                 </a>
             </div>
 
@@ -112,7 +87,7 @@
                 <div class="container">
                     <nav class="navbar navbar-expand-md navbar-light ">
                         <a class="navbar-brand" href="index.html">
-                            <img src="assets/images/logos/logo-1.png" alt="Logo">
+                            <img src="/static/assets/images/logos/logo-1.png" alt="Logo">
                         </a>
 
                         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
@@ -401,7 +376,7 @@
                             <h1>Order the Organic Foods Now!</h1>
                             <p>Lorem ipsum dolor sit amet, consetetur sadipscins elitr, seddiams nonumy eirmod.</p>
                             <a href="#" class="default-btn btn-bg-one">Order Now</a>
-                            <img src="assets/images/home-one/home-one-img1.png" alt="Banner Images">
+                            <img src="/static/assets/images/home-one/home-one-img1.png" alt="Banner Images">
                         </div>
                     </div>
 
@@ -412,7 +387,7 @@
                                     <h3>Sign Up on Shop</h3>
                                     <span>Get a 30% Offer!</span>
                                     <a href="#" class="newslette-btn">Newsletter</a>
-                                    <img src="assets/images/home-one/home-one-img2.png" alt="Banner Images">
+                                    <img src="/static/assets/images/home-one/home-one-img2.png" alt="Banner Images">
                                 </div>
                             </div>
 
@@ -438,11 +413,13 @@
                 </div>
 
                 <div class="row pt-45">
+
+                    {% for b in books %}
                     <div class="col-lg-3 col-sm-6">
                         <div class="new-arrival-item">
                             <div class="arrival-img">
                                 <a href="shop-details.html">
-                                    <img src="assets/images/new-arrival-img/new-arrival-1.png" alt="Product Images">
+                                    <img src="{{ b.image.url }}" height="250px" alt="Product Images">
                                 </a>
                                 <div class="arrival-item-tag">
                                     <h3>New</h3>
@@ -455,169 +432,19 @@
                             </div>
 
                             <div class="content">
-                                <h3><a href="shop-details.html">Organic Fresh Capsicum</a></h3>
+                                <h3><a href="{% url 'books:detail' b.id  %}">
+                                  {{ b }}
+                                </a></h3>
                                 <span>$12.0/Kg <del>$13.0/Kg</del></span>
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
 
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="new-arrival-item">
-                            <div class="arrival-img">
-                                <a href="shop-details.html">
-                                    <img src="assets/images/new-arrival-img/new-arrival-2.png" alt="Product Images">
-                                </a>
-                                <div class="arrival-item-tag">
-                                    <h3>New</h3>
-                                </div>
-                                <ul class="arrival-item-action">
-                                    <li><a href="#"><i class='bx bx-repost'></i></a></li>
-                                    <li><a href="wishlist.html"><i class='bx bx-heart'></i></a></li>
-                                    <li><a href="cart.html"><i class='bx bx-cart'></i></a></li>
-                                </ul>
-                            </div>
+                 
 
-                            <div class="content">
-                                <h3><a href="shop-details.html">Rear Organic Saffron</a></h3>
-                                <span>$4000.0/Kg</span>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-lg-3 col-sm-6 col-sm-6">
-                        <div class="new-arrival-item">
-                            <div class="arrival-img">
-                                <a href="shop-details.html">
-                                    <img src="assets/images/new-arrival-img/new-arrival-3.png" alt="Product Images">
-                                </a>
-                                <div class="arrival-item-tag">
-                                    <h3>-18%</h3>
-                                </div>
-                                <ul class="arrival-item-action">
-                                    <li><a href="#"><i class='bx bx-repost'></i></a></li>
-                                    <li><a href="wishlist.html"><i class='bx bx-heart'></i></a></li>
-                                    <li><a href="cart.html"><i class='bx bx-cart'></i></a></li>
-                                </ul>
-                            </div>
 
-                            <div class="content">
-                                <h3><a href="shop-details.html">Black Fresh Berry</a></h3>
-                                <span>$5.0/Kg <del>$10.0/Kg</del></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-sm-6 col-sm-6">
-                        <div class="new-arrival-item">
-                            <div class="arrival-img">
-                                <a href="shop-details.html">
-                                    <img src="assets/images/new-arrival-img/new-arrival-4.png" alt="Product Images">
-                                </a>
-                                <div class="arrival-item-tag">
-                                    <h3>New</h3>
-                                </div>
-                                <ul class="arrival-item-action">
-                                    <li><a href="#"><i class='bx bx-repost'></i></a></li>
-                                    <li><a href="wishlist.html"><i class='bx bx-heart'></i></a></li>
-                                    <li><a href="cart.html"><i class='bx bx-cart'></i></a></li>
-                                </ul>
-                            </div>
-
-                            <div class="content">
-                                <h3><a href="shop-details.html">Organic Gooseberry</a></h3>
-                                <span>$4.0/Kg <del>$7.0/Kg</del></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-sm-6 col-sm-6">
-                        <div class="new-arrival-item">
-                            <div class="arrival-img">
-                                <a href="shop-details.html">
-                                    <img src="assets/images/new-arrival-img/new-arrival-5.png" alt="Product Images">
-                                </a>
-                                <div class="arrival-item-tag">
-                                    <h3>New</h3>
-                                </div>
-                                <ul class="arrival-item-action">
-                                    <li><a href="#"><i class='bx bx-repost'></i></a></li>
-                                    <li><a href="wishlist.html"><i class='bx bx-heart'></i></a></li>
-                                    <li><a href="cart.html"><i class='bx bx-cart'></i></a></li>
-                                </ul>
-                            </div>
-
-                            <div class="content">
-                                <h3><a href="shop-details.html">Almond Nuts</a></h3>
-                                <span>$12.0/Kg <del>$14.0/Kg</del></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-sm-6 col-sm-6">
-                        <div class="new-arrival-item">
-                            <div class="arrival-img">
-                                <a href="shop-details.html">
-                                    <img src="assets/images/new-arrival-img/new-arrival-6.png" alt="Product Images">
-                                </a>
-                                <ul class="arrival-item-action">
-                                    <li><a href="#"><i class='bx bx-repost'></i></a></li>
-                                    <li><a href="wishlist.html"><i class='bx bx-heart'></i></a></li>
-                                    <li><a href="cart.html"><i class='bx bx-cart'></i></a></li>
-                                </ul>
-                            </div>
-
-                            <div class="content">
-                                <h3><a href="shop-details.html">Fresh Banana</a></h3>
-                                <span>$2.0/Kg <del>$4.0/Kg</del></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-sm-6 col-sm-6">
-                        <div class="new-arrival-item">
-                            <div class="arrival-img">
-                                <a href="shop-details.html">
-                                    <img src="assets/images/new-arrival-img/new-arrival-7.png" alt="Product Images">
-                                </a>
-                                <div class="arrival-item-tag">
-                                    <h3>New</h3>
-                                </div>
-                                <ul class="arrival-item-action">
-                                    <li><a href="#"><i class='bx bx-repost'></i></a></li>
-                                    <li><a href="wishlist.html"><i class='bx bx-heart'></i></a></li>
-                                    <li><a href="cart.html"><i class='bx bx-cart'></i></a></li>
-                                </ul>
-                            </div>
-
-                            <div class="content">
-                                <h3><a href="shop-details.html">Fresh Beef Meat</a></h3>
-                                <span>$10.0/Kg <del>$12.0/Kg</del></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-sm-6 col-sm-6">
-                        <div class="new-arrival-item">
-                            <div class="arrival-img">
-                                <a href="shop-details.html">
-                                    <img src="assets/images/new-arrival-img/new-arrival-8.png" alt="Product Images">
-                                </a>
-                                <div class="arrival-item-tag">
-                                    <h3>New</h3>
-                                </div>
-                                <ul class="arrival-item-action">
-                                    <li><a href="#"><i class='bx bx-repost'></i></a></li>
-                                    <li><a href="wishlist.html"><i class='bx bx-heart'></i></a></li>
-                                    <li><a href="cart.html"><i class='bx bx-cart'></i></a></li>
-                                </ul>
-                            </div>
-
-                            <div class="content">
-                                <h3><a href="shop-details.html">Super Natural Brinjal</a></h3>
-                                <span>$1.0/Kg <del>$2.0/Kg</del></span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -630,6 +457,7 @@
                     <h2>Why You Choose Us</h2>
                 </div>
                 <div class="row pt-45">
+
                     <div class="col-lg-4 col-sm-6">
                         <div class="choose-card">
                             <i class="flaticon-24-hours"></i>
@@ -675,7 +503,7 @@
                                 <div class="trending-item">
                                     <div class="trending-img">
                                         <a href="shop-details.html">
-                                            <img src="assets/images/trending-img/trending-img1.png" alt="Product Images">
+                                            <img src="/static/assets/images/trending-img/trending-img1.png" alt="Product Images">
                                         </a>
                                         <div class="trending-item-tag">
                                             <h3>New</h3>
@@ -705,7 +533,7 @@
                                 <div class="trending-item">
                                     <div class="trending-img">
                                         <a href="shop-details.html">
-                                            <img src="assets/images/trending-img/trending-img2.png" alt="Product Images">
+                                            <img src="/static/assets/images/trending-img/trending-img2.png" alt="Product Images">
                                         </a>
                                         <div class="trending-item-tag">
                                             <h3>-22%</h3>
@@ -735,7 +563,7 @@
                                 <div class="trending-item">
                                     <div class="trending-img">
                                         <a href="shop-details.html">
-                                            <img src="assets/images/trending-img/trending-img3.png" alt="Product Images">
+                                            <img src="/static/assets/images/trending-img/trending-img3.png" alt="Product Images">
                                         </a>
                                         <ul class="trending-item-action">
                                             <li><a href="#"><i class='bx bx-repost'></i></a></li>
@@ -762,7 +590,7 @@
                                 <div class="trending-item">
                                     <div class="trending-img">
                                         <a href="shop-details.html">
-                                            <img src="assets/images/trending-img/trending-img4.png" alt="Product Images">
+                                            <img src="/static/assets/images/trending-img/trending-img4.png" alt="Product Images">
                                         </a>
                                         <ul class="trending-item-action">
                                             <li><a href="#"><i class='bx bx-repost'></i></a></li>
@@ -789,7 +617,7 @@
                                 <div class="trending-item">
                                     <div class="trending-img">
                                         <a href="shop-details.html">
-                                            <img src="assets/images/trending-img/trending-img5.png" alt="Product Images">
+                                            <img src="/static/assets/images/trending-img/trending-img5.png" alt="Product Images">
                                         </a>
                                         <ul class="trending-item-action">
                                             <li><a href="#"><i class='bx bx-repost'></i></a></li>
@@ -816,7 +644,7 @@
                                 <div class="trending-item">
                                     <div class="trending-img">
                                         <a href="shop-details.html">
-                                            <img src="assets/images/trending-img/trending-img6.png" alt="Product Images">
+                                            <img src="/static/assets/images/trending-img/trending-img6.png" alt="Product Images">
                                         </a>
                                         <div class="trending-item-tag">
                                             <h3>New</h3>
@@ -851,7 +679,7 @@
                                     <h3>Buy One Get One</h3>
                                     <p>Buy one get one by getting one of our prawn and you will be able to get this offer.</p>
                                     <a href="#" class="shop-btn">Shop It Now</a>
-                                    <img src="assets/images/trending-img/trending-img7.png" alt="Images">
+                                    <img src="/static/assets/images/trending-img/trending-img7.png" alt="Images">
                                 </div>
                             </div>
 
@@ -860,7 +688,7 @@
                                     <span>Product Amazing!</span>
                                     <h3>Rear Organic Saffron</h3>
                                     <a href="#" class="shop-btn">Shop Now</a>
-                                    <img src="assets/images/trending-img/trending-img8.png" alt="Images">
+                                    <img src="/static/assets/images/trending-img/trending-img8.png" alt="Images">
                                 </div>
                             </div>
                         </div>
@@ -875,22 +703,22 @@
             <div class="container">
                 <div class="brand-slider owl-carousel owl-theme">
                     <div class="brand-item">
-                        <img src="assets/images/brand-logo/brand-img1.png" alt="Images">
+                        <img src="/static/assets/images/brand-logo/brand-img1.png" alt="Images">
                     </div>
                     <div class="brand-item">
-                        <img src="assets/images/brand-logo/brand-img2.png" alt="Images">
+                        <img src="/static/assets/images/brand-logo/brand-img2.png" alt="Images">
                     </div>
                     <div class="brand-item">
-                        <img src="assets/images/brand-logo/brand-img3.png" alt="Images">
+                        <img src="/static/assets/images/brand-logo/brand-img3.png" alt="Images">
                     </div>
                     <div class="brand-item">
-                        <img src="assets/images/brand-logo/brand-img4.png" alt="Images">
+                        <img src="/static/assets/images/brand-logo/brand-img4.png" alt="Images">
                     </div>
                     <div class="brand-item">
-                        <img src="assets/images/brand-logo/brand-img5.png" alt="Images">
+                        <img src="/static/assets/images/brand-logo/brand-img5.png" alt="Images">
                     </div>
                     <div class="brand-item">
-                        <img src="assets/images/brand-logo/brand-img2.png" alt="Images">
+                        <img src="/static/assets/images/brand-logo/brand-img2.png" alt="Images">
                     </div>
                 </div>
             </div>
@@ -902,7 +730,7 @@
             <div class="container">
                 <div class="testimonials-slider owl-carousel owl-theme">
                     <div class="testimonials-item">
-                        <img src="assets/images/testimonials/testimonials-img1.jpg" alt="Images">
+                        <img src="/static/assets/images/testimonials/testimonials-img1.jpg" alt="Images">
                         <p>
                             "We are one of the best  and huge problem on the product taking from online. Most of the time we 
                             get the eCommerce  and ordered product on this and on that time we saw that it gives the best 
@@ -913,7 +741,7 @@
                     </div>
 
                     <div class="testimonials-item">
-                        <img src="assets/images/testimonials/testimonials-img2.jpg" alt="Images">
+                        <img src="/static/assets/images/testimonials/testimonials-img2.jpg" alt="Images">
                         <p>
                             "We are one of the best  and huge problem on the product taking from online. Most of the time we 
                             get the eCommerce  and ordered product on this and on that time we saw that it gives the best 
@@ -944,7 +772,7 @@
                             <h3>Buy 100% Fresh Apple</h3>
                             <p>Get this food now</p>
                             <a href="#" class="shop-btn">Shop Now</a>
-                            <img src="assets/images/offer-img/offer-img5.png" alt="Images">
+                            <img src="/static/assets/images/offer-img/offer-img5.png" alt="Images">
                         </div>
                     </div>
 
@@ -954,7 +782,7 @@
                             <h3>Offer Start at $30 Buy!</h3>
                             <p>Come to us immediately.</p>
                             <a href="#" class="shop-btn">Shop It Now</a>
-                            <img src="assets/images/offer-img/offer-img6.png" alt="Images">
+                            <img src="/static/assets/images/offer-img/offer-img6.png" alt="Images">
                         </div>
                     </div>
 
@@ -962,7 +790,7 @@
                         <div class="offer-item">
                             <div class="offer-img">
                                 <a href="shop-details.html">
-                                    <img src="assets/images/offer-img/offer-img1.png" alt="Product Images">
+                                    <img src="/static/assets/images/offer-img/offer-img1.png" alt="Product Images">
                                 </a>
                                 <div class="offer-item-tag">
                                     <h3>-18%</h3>
@@ -985,7 +813,7 @@
                         <div class="offer-item">
                             <div class="offer-img">
                                 <a href="shop-details.html">
-                                    <img src="assets/images/offer-img/offer-img2.png" alt="Product Images">
+                                    <img src="/static/assets/images/offer-img/offer-img2.png" alt="Product Images">
                                 </a>
                                 <div class="offer-item-tag">
                                     <h3>-10%</h3>
@@ -1008,7 +836,7 @@
                         <div class="offer-item">
                             <div class="offer-img">
                                 <a href="shop-details.html">
-                                    <img src="assets/images/offer-img/offer-img3.png" alt="Product Images">
+                                    <img src="/static/assets/images/offer-img/offer-img3.png" alt="Product Images">
                                 </a>
                                 <div class="offer-item-tag">
                                     <h3>-10%</h3>
@@ -1031,7 +859,7 @@
                         <div class="offer-item">
                             <div class="offer-img">
                                 <a href="shop-details.html">
-                                    <img src="assets/images/offer-img/offer-img4.png" alt="Product Images">
+                                    <img src="/static/assets/images/offer-img/offer-img4.png" alt="Product Images">
                                 </a>
                                 <div class="offer-item-tag">
                                     <h3>-5%</h3>
@@ -1068,7 +896,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="blog-card">
                             <a href="blog-details.html">
-                                <img src="assets/images/blog/blog-img1.jpg" alt="Images">
+                                <img src="/static/assets/images/blog/blog-img1.jpg" alt="Images">
                             </a>
                             <div class="content">
                                 <span><i class='bx bx-time-five'></i> Nov 01, 2020</span>
@@ -1084,7 +912,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="blog-card">
                             <a href="blog-details.html">
-                                <img src="assets/images/blog/blog-img2.jpg" alt="Images">
+                                <img src="/static/assets/images/blog/blog-img2.jpg" alt="Images">
                             </a>
                             <div class="content">
                                 <span><i class='bx bx-time-five'></i> Nov 05, 2020</span>
@@ -1100,7 +928,7 @@
                     <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3">
                         <div class="blog-card">
                             <a href="blog-details.html">
-                                <img src="assets/images/blog/blog-img3.jpg" alt="Images">
+                                <img src="/static/assets/images/blog/blog-img3.jpg" alt="Images">
                             </a>
                             <div class="content">
                                 <span><i class='bx bx-time-five'></i> Nov 07, 2020</span>
@@ -1149,8 +977,8 @@
                             <div class="footer-widget">
                                 <div class="footer-logo">
                                     <a href="index.html">
-                                        <img src="assets/images/logos/footer-logo.png" class="footer-logo1" alt="Images">
-                                        <img src="assets/images/logos/logo-1.png" class="footer-logo2" alt="Images">
+                                        <img src="/static/assets/images/logos/footer-logo.png" class="footer-logo1" alt="Images">
+                                        <img src="/static/assets/images/logos/logo-1.png" class="footer-logo2" alt="Images">
                                     </a>
                                 </div>
                                 <p>
@@ -1292,30 +1120,7 @@
         <!-- Footer Area End -->
 
 
-        <!-- Jquery Min JS -->
-        <script src="assets/js/jquery.min.js"></script>
-        <!-- Bootstrap Min JS -->
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <!-- Owl Carousel Min JS -->
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <!-- Nice Select Min JS -->
-        <script src="assets/js/jquery.nice-select.min.js"></script>
-        <!-- Wow Min JS -->
-        <script src="assets/js/wow.min.js"></script>
-        <!-- Meanmenu JS -->
-        <script src="assets/js/meanmenu.js"></script>
-        <!-- Jquery Ui Min JS -->
-        <script src="assets/js/jquery-ui.min.js"></script>
-        <!-- Ajaxchimp Min JS -->
-        <script src="assets/js/jquery.ajaxchimp.min.js"></script>
-        <!-- Form Validator Min JS -->
-        <script src="assets/js/form-validator.min.js"></script>
-        <!-- Contact Form JS -->
-        <script src="assets/js/contact-form-script.js"></script>
-        <!-- Mixitup Min JS -->
-        <script src="assets/js/mixitup.min.js"></script>
-        <!-- Custom JS -->
-        <script src="assets/js/custom.js"></script>
+    {% include 'js_links.html' %}
 
     </body>
 </html>
