@@ -25,6 +25,7 @@ class HomeView(ListView):
 
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        print( self.request.COOKIES.get("username") )
         context =  super().get_context_data(**kwargs)
         categories = Category.objects.all()
         context["categories"] = categories
@@ -45,8 +46,11 @@ def category_books(request,pk):
     category = Category.objects.get(id=pk)
     books = Book.objects.filter(category=category)
     categories = Category.objects.all()
-    data = {"books":books ,"categories":categories,"category":category}
-    return render(request=request, template_name="index.html",context= data )
+    data = {"kitoblar":books ,"categories":categories,"category":category}
+    response =  render(request=request, template_name="index.html",context= data )
+    print( request.COOKIES.get("username") )
+    response.set_cookie("username" , "Alex")
+    return response
 
 
 class BookDetail(DetailView):

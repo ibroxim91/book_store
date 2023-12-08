@@ -8,6 +8,8 @@ class Category(models.Model):
     def __str__(self) -> str:
         return self.name
 
+
+
 class Book(models.Model):
     category = models.ForeignKey(Category , on_delete=models.PROTECT, null=True)
     name = models.CharField(verbose_name= "Kitob oti", editable=True,
@@ -40,4 +42,17 @@ class TgAdmin(models.Model):
     tg_id = models.BigIntegerField()
     name = models.CharField(max_length=15)
 
-    
+
+
+class Cart(models.Model):
+    total_summa = models.IntegerField(default=0)
+    total_qty = models.IntegerField(default=0)
+    cart_detail = models.ManyToManyField('CartProduct')
+
+
+class CartProduct(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    summa = models.IntegerField(default=0)
+    qty = models.IntegerField(default=0)
+
+
