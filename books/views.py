@@ -1,6 +1,6 @@
 from typing import Any
 from django.shortcuts import render
-from .models import Book,Category,TgAdmin
+from .models import Book, Cart,Category,TgAdmin
 import datetime
 from django.core.mail import send_mail
 import telebot
@@ -25,7 +25,7 @@ class HomeView(ListView):
 
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        print( self.request.COOKIES.get("username") )
+
         context =  super().get_context_data(**kwargs)
         categories = Category.objects.all()
         context["categories"] = categories
@@ -47,10 +47,16 @@ def category_books(request,pk):
     books = Book.objects.filter(category=category)
     categories = Category.objects.all()
     data = {"kitoblar":books ,"categories":categories,"category":category}
-    response =  render(request=request, template_name="index.html",context= data )
-    print( request.COOKIES.get("username") )
-    response.set_cookie("username" , "Alex")
+    response = render(request=request, template_name="index.html",context= data )
+    response.set_cookie(key="new_key" , value="+998991234567" , httponly=True)
+
+    print()
+    print( request.COOKIES.get("token")  )
+    print()
+
     return response
+  
+     
 
 
 class BookDetail(DetailView):
@@ -71,7 +77,15 @@ def search(request):
     books = Book.objects.filter(name__icontains=query)
     categories = Category.objects.all()
     data = {"books":books ,"categories":categories}
-    return render(request=request, template_name="index.html",context= data )
+    response = render(request=request, template_name="index.html",context= data )
+    import datetime
+    end = datetime.datetime(2023,12,9,15,11)
+ 
+    # response.delete_cookie("kitob")
+    print()
+    print( request.COOKIES)
+    print()
+    return response 
 
 
 class AddBook(View):
@@ -96,4 +110,32 @@ class MyLoginView(LoginView):
     template_name = "login.html"
     success_url = "/"
 
-   
+
+class AddCart(View):
+    def get(self, request, product_id):
+        create = False
+        if request.COOKIES.get("cart_id"):
+            print()
+            print("Cart topildi !")
+            print()
+            cart_id = request.COOKIES.get("cart_id")
+            cart = Cart.objects.get(id=int(cart_id) )
+        else:
+            print()
+            print()
+            print("Cart ochildi !")
+            print()
+            cart = Cart.objects.create()
+            create = True
+        book = Book.objects.get(id=int(product_id))
+        cart.cart_detail.create(book=book,qty=1)
+        response = render(request, "index.html") 
+        if create:
+            response.set_cookie('cart_id' , cart.id)
+        return response
+        
+
+
+
+
+

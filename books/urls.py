@@ -13,7 +13,9 @@ urlpatterns = [
     path("search" , search),
     path("login" , MyLoginView.as_view() ),
 
-    path("add_book/<int:id>", AddBook.as_view() ,name="add_book" )
+    path("add_book/<int:id>", AddBook.as_view() ,name="add_book" ),
+
+    path("add_cart/<int:product_id>", AddCart.as_view() ,name="add_cart" )
 ]
 
 

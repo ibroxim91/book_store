@@ -427,7 +427,9 @@
                                 <ul class="arrival-item-action">
                                     <li><a href="#"><i class='bx bx-repost'></i></a></li>
                                     <li><a href="wishlist.html"><i class='bx bx-heart'></i></a></li>
-                                    <li><a href="cart.html"><i class='bx bx-cart'></i></a></li>
+                                    <li><a href="{% url 'books:add_cart' b.id %}">
+                                        <i class='bx bx-cart'></i></a>
+                                    </li>
                                 </ul>
                             </div>
 
