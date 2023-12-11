@@ -6,6 +6,7 @@ from .models import *
 class BookAdmin(admin.ModelAdmin):
     list_display = ("name","slug")
     prepopulated_fields = {"slug":("name",)} 
+    readonly_fields = ("views",)
 
     
 admin.site.register(Category)

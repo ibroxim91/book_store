@@ -21,7 +21,7 @@ class Book(models.Model):
     likes = models.BigIntegerField(default=0)
     dislikes = models.BigIntegerField(default=0)
     slug = models.SlugField(max_length=88,  blank=True)
-    # views = models.BigIntegerField(default=0)
+    views = models.BigIntegerField(default=0)
     
     # status = models.BooleanField()
     # models.EmailField()

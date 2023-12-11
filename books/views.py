@@ -66,7 +66,26 @@ class BookDetail(DetailView):
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context =  super().get_context_data(**kwargs)
+        book = self.get_object()
+        print()
+        if  self.request.session.get("books_id"):
+            print()     
+            print("If")     
+            print()   
+            if book.id not in self.request.session["books_id"]:    
+                self.request.session["books_id"].append(book.id)
+                book.views  += 1
+        else: 
+            print()     
+            print("Else")     
+            print()     
+            self.request.session["books_id"] = []
+            self.request.session["books_id"].append(book.id)
+            book.views  += 1
+        book.save()
+        self.request.session.save()
 
+        print()
         context["categories"] = Category.objects.all()
         return context 
 
@@ -115,16 +134,9 @@ class AddCart(View):
     def get(self, request, product_id):
         create = False
         if request.COOKIES.get("cart_id"):
-            print()
-            print("Cart topildi !")
-            print()
             cart_id = request.COOKIES.get("cart_id")
             cart = Cart.objects.get(id=int(cart_id) )
         else:
-            print()
-            print()
-            print("Cart ochildi !")
-            print()
             cart = Cart.objects.create()
             create = True
         book = Book.objects.get(id=int(product_id))

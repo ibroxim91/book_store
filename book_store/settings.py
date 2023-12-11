@@ -73,6 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'book_store.wsgi.application'
 
+SESSION_COOKIE_AGE = 2592000
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
