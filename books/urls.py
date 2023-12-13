@@ -1,5 +1,7 @@
 from django.urls import path
 from .views import *
+from .feeds import LatestEntriesFeed
+
 app_name = "books"
 from django.views.generic import TemplateView
 
@@ -8,14 +10,17 @@ urlpatterns = [
     path("" , HomeView.as_view() , name="homeView"
          ),
     path("category/<int:pk>" , category_books),
-    path("detail/<int:pk>" , BookDetail.as_view() , name="detail" ),
+    path("book-detail/<int:pk>" , BookDetail.as_view() , name="detail" ),
 
     path("search" , search),
     path("login" , MyLoginView.as_view() ),
 
     path("add_book/<int:id>", AddBook.as_view() ,name="add_book" ),
 
-    path("add_cart/<int:product_id>", AddCart.as_view() ,name="add_cart" )
+    path("add_cart/<int:product_id>", AddCart.as_view() ,name="add_cart" ),
+
+    path("rss" , LatestEntriesFeed() , name="rss")
+    
 ]
 
 

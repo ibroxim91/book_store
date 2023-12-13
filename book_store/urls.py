@@ -16,19 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from django.http import HttpResponse
-
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
+from books.models import Book
 
-def home(request):
-    return HttpResponse("Assalomu alaykum")
+
+info_dict = {
+    "queryset": Book.objects.all(),
+    "date_field": "add_date",
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("books.urls")  ),
     path('client/', include("client.urls")  ),
+  
 ]
 
 urlpatterns += i18n_patterns(

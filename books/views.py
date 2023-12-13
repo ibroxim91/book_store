@@ -68,26 +68,25 @@ class BookDetail(DetailView):
         context =  super().get_context_data(**kwargs)
         book = self.get_object()
         print()
+        
         if  self.request.session.get("books_id"):
-            print()     
-            print("If")     
-            print()   
             if book.id not in self.request.session["books_id"]:    
                 self.request.session["books_id"].append(book.id)
                 book.views  += 1
-        else: 
-            print()     
-            print("Else")     
-            print()     
+        else:    
             self.request.session["books_id"] = []
             self.request.session["books_id"].append(book.id)
             book.views  += 1
+
+
         book.save()
         self.request.session.save()
 
         print()
         context["categories"] = Category.objects.all()
         return context 
+
+
 
 
 

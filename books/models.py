@@ -9,7 +9,6 @@ class Category(models.Model):
         return self.name
 
 
-
 class Book(models.Model):
     category = models.ForeignKey(Category , on_delete=models.PROTECT, null=True)
     name = models.CharField(verbose_name= "Kitob oti", editable=True,
@@ -22,6 +21,9 @@ class Book(models.Model):
     dislikes = models.BigIntegerField(default=0)
     slug = models.SlugField(max_length=88,  blank=True)
     views = models.BigIntegerField(default=0)
+
+    def get_absolute_url(self):
+        return f"/detail/{self.id}"
     
     # status = models.BooleanField()
     # models.EmailField()
